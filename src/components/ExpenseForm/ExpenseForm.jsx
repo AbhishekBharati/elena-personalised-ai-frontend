@@ -2,10 +2,37 @@
 import './ExpenseForm.css'
 import { Button, Card, TextField } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import React from "react";
+import React, { useState } from "react";
+import { addExpenses } from '../../api/expense';
+
 
 
 const ExpenseForm = ({onUpdate}) => {
+  
+    const [addExpense, setAddExpense] = useState({
+      item : '',
+      amount : ''
+    });
+  
+    const handleInputChange = (e) => {
+      const {name , value} = e.target;
+      setAddExpense({
+        ...addExpense,
+        [name] : value
+      });
+    }
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      try {
+        addExpenses(addExpense)
+        .then(() => {
+          alert('Expenses Added.');
+        })
+      } catch (err) {
+        console.error(err);
+      }
+    }
   
     const sendDataToParent = (feature) => {
       onUpdate(null);
@@ -16,7 +43,14 @@ const ExpenseForm = ({onUpdate}) => {
                 <Button onClick={sendDataToParent} sx={{position:'absolute', top: '0', right :'0', padding : '10px'}}>
                   <CloseIcon />
                 </Button>
-                <TextField label="Expenditure Product" InputLabelProps={{ style : {color : 'white'}}} variant="outlined" sx={{
+                <TextField 
+                  value={addExpense.item}
+                  name='item'
+                  onChange={handleInputChange}
+                  label="Expenditure Product" 
+                  InputLabelProps={{ style : {color : 'white'}}} 
+                  variant="outlined" 
+                  sx={{
                     input : {
                         color : 'white', 
                     },
@@ -35,7 +69,11 @@ const ExpenseForm = ({onUpdate}) => {
                         color: 'white', // or any other color
                       }
                 }}/>
-                <TextField label="Expenditure Amount" InputLabelProps={{ style : {color : 'white'}}}
+                <TextField
+                  value={addExpense.amount}
+                  name='amount'
+                  onChange={handleInputChange}
+                   label="Expenditure Amount" InputLabelProps={{ style : {color : 'white'}}}
                 sx={{
                     margin : '10px',                    
                     height : '500 px',
@@ -58,7 +96,9 @@ const ExpenseForm = ({onUpdate}) => {
                   }
             }}
                  variant="outlined"/>
-            <Button variant='contained' >Add</Button>
+            <Button 
+            onClick={handleSubmit}
+            variant='contained' >Add</Button>
             </Card>
             </div>
 

@@ -1,17 +1,3 @@
-/* .fullScreenForm{ */
-/*     top: 0; */
-/*     left: 0; */
-/*     position : fixed; */
-/*     display: flex; */
-/*     align-items: center; */
-/*     justify-content: center; */
-/*     height: 100vh; */
-/*     width: 100%; */
-/*     z-index: 1000; */
-/* } */
-/* .blurBackground { */
-/*     filter: blur(5px); */
-/* } */
 
 .ExpenseForm{
     height: 300px;
