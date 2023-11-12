@@ -15,8 +15,9 @@ const useStyles = makeStyles({
         margin : '8px',
         transition : 'transform 10s ease', // For smooth transition
         transformOrigin : 'bottom center', // Ensures that the element scales from bottom
+        boxShadow: '0px 10px 15px rgba(0,0,0,0.2)',
         '&:hover' : {
-            transform : 'scale3d(1.5, 1.5, 1) translateY(-15%)',
+            transform : 'scale3d(1.3, 1.3, 1) translateY(-15%)',
             boxShadow: '0px 10px 15px rgba(0,0,0,0.2)',
             zIndex : '2'
         }

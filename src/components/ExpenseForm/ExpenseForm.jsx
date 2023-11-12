@@ -27,6 +27,9 @@ const ExpenseForm = ({onUpdate}) => {
       try {
         addExpenses(addExpense)
         .then(() => {
+          onUpdate(null)
+        })
+        .then(() => {
           alert('Expenses Added.');
         })
       } catch (err) {
@@ -34,7 +37,7 @@ const ExpenseForm = ({onUpdate}) => {
       }
     }
   
-    const sendDataToParent = (feature) => {
+    const sendDataToParent = () => {
       onUpdate(null);
     }
     return (

@@ -11,3 +11,13 @@ export const addExpenses = async (data) => {
         throw err;
     }
 }
+
+export const getExpensesByDate = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}/expense/totalExpensesByDate`);
+        return response.data;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+}
